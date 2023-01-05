@@ -1,9 +1,10 @@
-import React from 'react'
+import { ReactComponent as Logo } from '../../assets/logo.svg'
+import './style.scss'
 
-const index = () => {
+const Topbar = () => {
   return (
-    <div>index</div>
+    <div className='wrapper-navbar'><Logo/></div>
   )
 }
 
-export default index
+export default Topbar
