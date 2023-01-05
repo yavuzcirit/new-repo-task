@@ -1,8 +1,9 @@
 import './style.scss'
+import {  useGetBooksQuery } from '../../services/bookStore'
 
 const Main = () => {
   return (
-    <div>Main</div>
+    <div className='main-page'>Main</div>
   )
 }
 
