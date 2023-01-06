@@ -1,17 +1,18 @@
-import { CSSProperties } from 'react'
-import '/style.scss'
+import Card from '../Card'
+import './style.scss'
 
 interface CardWrapperProps {
-    header: string
-    borderColor?: CSSProperties | undefined | any
-    children: any
+    data?: any
+    header?: string
   }
 
-const CardWrapper: React.FC<CardWrapperProps>  = ({header,borderColor,children}) => {
+const CardWrapper: React.FC<CardWrapperProps>  = ({data, header}) => {
+  console.log("CarWrapper",data)
   return (
-    <div className='card-wrapper' style={borderColor && {borderTop:`4px solid ${borderColor}`}}>
+    <div className='card-wrapper'>
         <div className='card-header-year'>{header}</div>
-        <div className='elements'>{children}</div>
+        {data && data?.map((item: any,index: any) => <Card data={item} key={index}/>)}
+        <div className='elements'></div>
     </div>
   )
 }

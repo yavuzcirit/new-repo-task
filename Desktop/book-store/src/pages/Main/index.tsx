@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import './style.scss'
+import CardWrapper from "../../components/CardWrapper";
+import { ReactComponent as Loading } from '../../assets/loading.svg'
 
 const Main = () => {
-  const [datas, setDatas] = useState([]);
+  const [datas, setDatas] = useState<any>([]);
+  const [items, setItems] = useState<any>();
+  const [loading, setLoading] = useState<boolean>(false)
+  const [searchValue, setSearchValue ] = useState<string>("")
 
   const getData = async (id: string) => {
+    setLoading(true)
     const  data  = await axios.get(`http://openlibrary.org/search.json?author=OL${id}`);
     const {docs} = data?.data
     //console.log(docs.sort((a:any)=>a.first_publish_year));
@@ -14,19 +20,34 @@ const Main = () => {
       r[a.first_publish_year].push(a);
       return r;
   }, Object.create(null));
-  console.log("**************",result)
+  console.log("**************", (Object.keys(result)))
+  setItems(result)
+  setDatas(Object.keys(result))
+  
   };
 
   useEffect(() => {
    try{ 
-    getData("26320A")
+    getData(searchValue)
+    setLoading(false)
   }
    catch(err){
     console.log(err)
    }
-  }, []);
+  }, [loading]);
   return (
-    <div className='main-page'>Main</div>
+    <div className='main'>
+     <div className="main-top">
+     <div className="main-header">Lorem Board</div>
+      <p className="main-input-label">books of</p>
+      <input value={searchValue} onChange={(e) => setSearchValue(e.target.value)} className="main-input" type="text" />
+      <button onClick={()=>setLoading(true)} className="main-submit-button">Submit</button>
+      {loading && <div className="loading-icon"><Loading /></div>}
+     </div>
+        <div className="main-page">
+        {datas && datas.map((item:any,index:number)=> <CardWrapper header={item} data={items[item]} key={index} />)}
+     </div>
+    </div>
   )
 }
 
