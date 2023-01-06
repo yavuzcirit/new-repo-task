@@ -3,6 +3,7 @@ import axios from "axios";
 import './style.scss'
 import CardWrapper from "../../components/CardWrapper";
 import { ReactComponent as Loading } from '../../assets/loading.svg'
+import NotFound from "../../components/NotFound";
 
 const Main = () => {
   const [datas, setDatas] = useState<any>([]);
@@ -36,7 +37,8 @@ const Main = () => {
    }
   }, [loading]);
   return (
-    <div className='main'>
+    <>
+   <div className='main'>
      <div className="main-top">
      <div className="main-header">Lorem Board</div>
       <p className="main-input-label">books of</p>
@@ -44,10 +46,11 @@ const Main = () => {
       <button onClick={()=>setLoading(true)} className="main-submit-button">Submit</button>
       {loading && <div className="loading-icon"><Loading /></div>}
      </div>
-        <div className="main-page">
+     {datas?.length>0 ?  <div className="main-page">
         {datas && datas.map((item:any,index:number)=> <CardWrapper header={item} data={items[item]} key={index} />)}
-     </div>
-    </div>
+     </div>: <NotFound/>}
+    </div> 
+    </>
   )
 }
 
