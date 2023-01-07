@@ -1,0 +1,21 @@
+.card-wrapper{
+    margin-top:2rem !important;
+    min-width:280px !important;
+    height: fit-content !important;
+    min-height:fit-content !important;
+    background-color:#F2F2F2 !important;
+    box-shadow: 0px 0px 10px #D2D7E0;
+    border-radius: 5px !important;
+    border-top: 4px solid  #E57373;
+    margin-right: 2.25rem !important;
+    .card-header-year{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        color: #707090;
+        margin-top:14px;
+        margin-left:14px;
+        margin-bottom:26px;
+    }
+}
