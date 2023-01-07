@@ -13,7 +13,7 @@ const Main = () => {
 
   const getData = async (id: string) => {
     setLoading(true)
-    const  data  = await axios.get(`http://openlibrary.org/search.json?author=OL${id}`);
+    const  data  = await axios.get(`http://openlibrary.org/search.json?author=${id}`);
     const {docs} = data?.data
     //console.log(docs.sort((a:any)=>a.first_publish_year));
     const result = docs?.reduce(function (r: { [x: string]: any[]; }, a: { first_publish_year: string | number; }) {
