@@ -24,18 +24,17 @@ const Main = () => {
   console.log("**************", (Object.keys(result)))
   setItems(result)
   setDatas(Object.keys(result))
-  
+  Object.keys(result)?.length>0 && setLoading(false)
   };
 
-  useEffect(() => {
+  const getDetails = () => {
    try{ 
     getData(searchValue)
-    setLoading(false)
   }
    catch(err){
     console.log(err)
    }
-  }, [loading]);
+  }
   return (
     <>
    <div className='main'>
@@ -43,7 +42,9 @@ const Main = () => {
      <div className="main-header">Lorem Board</div>
       <p className="main-input-label">books of</p>
       <input value={searchValue} onChange={(e) => setSearchValue(e.target.value)} className="main-input" type="text" />
-      <button onClick={()=>setLoading(true)} className="main-submit-button">Submit</button>
+      <button onClick={()=>{
+        setLoading(true)
+        getDetails()}} className="main-submit-button">Submit</button>
       {loading && <div className="loading-icon"><Loading /></div>}
      </div>
      {datas?.length>0 ?  <div className="main-page">
