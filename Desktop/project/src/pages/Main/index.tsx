@@ -41,7 +41,7 @@ const Main = () => {
     <>
    <div className='main'>
      <div className="main-top">
-     <div className="main-header">{authorName}</div>
+     <div className="main-header">{authorName ? authorName : ""}</div>
       <p className="main-input-label">books of</p>
       <input value={searchValue} onChange={(e) => setSearchValue(e.target.value)} className="main-input" type="text" />
       <button disabled={searchValue?.length === 0} onClick={()=>{
