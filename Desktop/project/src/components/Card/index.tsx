@@ -13,7 +13,7 @@ const Card: React.FC<Card> = ({data}) => {
   const handleOpenCard = () => {
     setOpen(!open)
   }
-  console.log("wwwwwwwwww",data)
+  //console.log("wwwwwwwwww",data)
   return (
 <div className='card-container'>
   {open ? ( 

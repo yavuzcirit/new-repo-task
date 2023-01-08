@@ -7,7 +7,7 @@ interface CardWrapperProps {
   }
 
 const CardWrapper: React.FC<CardWrapperProps>  = ({data, header}) => {
-  console.log("CarWrapper",data)
+  //console.log("CarWrapper",data)
 
 const color = randomColor();
 

@@ -23,7 +23,7 @@ const Main = () => {
       r[a.first_publish_year].push(a);
       return r;
   }, Object.create(null));
-  console.log("**************", (Object.keys(result)))
+  //console.log("**************", (Object.keys(result)))
   setItems(result)
   setDatas(Object.keys(result))
   Object.keys(result)?.length>0 && setLoading(false)
