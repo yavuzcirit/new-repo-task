@@ -10,12 +10,14 @@ const Main = () => {
   const [items, setItems] = useState<any>();
   const [loading, setLoading] = useState<boolean>(false)
   const [searchValue, setSearchValue ] = useState<string>("")
+  const [authorName, setAuthorName ] = useState<string>("")
 
   const getData = async (id: string) => {
     setLoading(true)
     const  data  = await axios.get(`http://openlibrary.org/search.json?author=${id}`);
     const {docs} = data?.data
-    //console.log(docs.sort((a:any)=>a.first_publish_year));
+   // console.log("*********>>>>>>>>>>>",docs[0]?.author_name[0]);
+    setAuthorName(docs && docs[0]?.author_name[0])
     const result = docs?.reduce(function (r: { [x: string]: any[]; }, a: { first_publish_year: string | number; }) {
       r[a.first_publish_year] = r[a.first_publish_year] || [];
       r[a.first_publish_year].push(a);
@@ -39,7 +41,7 @@ const Main = () => {
     <>
    <div className='main'>
      <div className="main-top">
-     <div className="main-header">Lorem Board</div>
+     <div className="main-header">{authorName}</div>
       <p className="main-input-label">books of</p>
       <input value={searchValue} onChange={(e) => setSearchValue(e.target.value)} className="main-input" type="text" />
       <button disabled={searchValue?.length === 0} onClick={()=>{
