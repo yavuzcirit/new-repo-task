@@ -42,12 +42,12 @@ const Main = () => {
      <div className="main-header">Lorem Board</div>
       <p className="main-input-label">books of</p>
       <input value={searchValue} onChange={(e) => setSearchValue(e.target.value)} className="main-input" type="text" />
-      <button onClick={()=>{
+      <button disabled={searchValue?.length === 0} onClick={()=>{
         setLoading(true)
         getDetails()}} className="main-submit-button">Submit</button>
       {loading && <div className="loading-icon"><Loading /></div>}
      </div>
-     {datas?.length>0 ?  <div className="main-page">
+     {datas?.length>0  ?  <div className="main-page">
         {datas && datas.map((item:any,index:number)=> <CardWrapper header={item} data={items[item]} key={index} />)}
      </div>: <NotFound/>}
     </div> 
